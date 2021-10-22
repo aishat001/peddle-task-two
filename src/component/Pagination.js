@@ -28,9 +28,7 @@ export default function Pagination() {
 
       const hasPrevious = pageNumber > 1;
       const hasNext = !state.next;
-      if (pageNumber === 5) {
-        hasNext = null
-      }
+     
 
     return (
         <div>

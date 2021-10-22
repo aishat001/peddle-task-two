@@ -1,30 +1,28 @@
-import axios from "axios";
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import Layout from './component/Layout';
-import Repos from './component/Repos';
+import { Route, Switch, BrowserRouter, Link } from "react-router-dom";
+// import { Users } from "../src/component/Users";
+import Pagination from "./component/Pagination";
+
 
 function App() {
-const [repos, setRepos] = useState([]);
 
-
-const baseURL = "https://api.github.com/search/repositories?q=created:>2021-08-13&sort=stars&order=desc";
-React.useEffect(() => {
-  axios
-  .get(baseURL).then((response) => {
-    setRepos( Object.values(response.data.items).map(i => i));
-    })
-  .catch(err => console.log(err));
-}, []);
-console.log(repos.length);
 
   return (
     <div className="App">
         <Layout>
-            <Repos repos={repos}/>
+            <BrowserRouter>
+      <Switch>
+        <Route path="/repos/page/:pageNumber" component={Pagination} />
+        <Route path="/repos/page/1" component={Pagination} />
+        <Route path="/" component={Home} />
+      </Switch>
+    </BrowserRouter>
         </Layout>
     </div>
   );
 }
+const Home = () => <div className="w-60 h-40 flex justify-center items-center m-auto"><Link to="/repos/page/1" className="w-40 h-40 border p-10 mt-40 bg-black text-white">Click to check trendy Repositories</Link></div>;
 
 export default App;

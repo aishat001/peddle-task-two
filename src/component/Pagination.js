@@ -6,7 +6,7 @@ import Repos from "./Repos";
 export default function Pagination() {
     const params = useParams();
     
-    const pageNumber = params.pageNumber ? parseInt(params.pageNumber, 5) : 1;
+    const pageNumber = params.pageNumber ? parseInt(params.pageNumber, 10) : 1;
     
     const [state, setState] = useState([]);
 
@@ -28,6 +28,7 @@ export default function Pagination() {
 
       const hasPrevious = pageNumber > 1;
       const hasNext = !state.next;
+
      
 
     return (
@@ -38,7 +39,11 @@ export default function Pagination() {
         {hasPrevious && (
           <Link to={`/repos/page/${pageNumber - 1}`} className="flex items-center px-4 py-2 text-gray-500 bg-gray-300 rounded-md">Previous</Link>
         )}
-        {hasNext && <Link to={`/repos/page/${pageNumber + 1}`} className="px-4 py-2 font-bold text-gray-500 bg-gray-300 rounded-md hover:bg-blue-400 hover:text-white">Next</Link>}
+        {
+          pageNumber === 10 ?
+          !hasNext 
+          :
+        hasNext && <Link to={`/github/repos/page/${pageNumber + 1}`} className="px-4 py-2 font-bold text-gray-500 bg-gray-300 rounded-md hover:bg-blue-400 hover:text-white">Next</Link>}
 
     </div>
         </div>

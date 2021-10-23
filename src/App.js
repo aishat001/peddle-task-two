@@ -14,8 +14,8 @@ function App() {
         <Layout>
             <BrowserRouter>
       <Switch>
-        <Route path="/repos/page/:pageNumber" component={Pagination} />
-        <Route path="/repos/page/1" component={Pagination} />
+        <Route path="/github/repos/page/:pageNumber" component={Pagination} />
+        <Route path="/github/repos/page/1" component={Pagination} />
         <Route path="/" component={Home} />
       </Switch>
     </BrowserRouter>
@@ -23,6 +23,6 @@ function App() {
     </div>
   );
 }
-const Home = () => <div className="w-60 h-40 flex justify-center items-center m-auto"><Link to="/repos/page/1" className="w-40 h-40 border p-10 mt-40 bg-black text-white">Click to check trendy Repositories</Link></div>;
+const Home = () => <div className="w-60 h-40 mt-40 flex justify-center items-center m-auto"><Link to="/github/repos/page/1" className="w-80 h-40 border p-10 bg-black text-white flex items-center cursor-pointer">Click to check trendy Github Repositories</Link></div>;
 
 export default App;

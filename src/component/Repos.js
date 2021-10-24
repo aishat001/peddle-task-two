@@ -21,7 +21,12 @@ export default function Repos({ repos }) {
         return moment.duration(current.diff(given)).asDays();
 
     }
+console.log(repos);
 
+const shortenDes = (str) => {
+    return str?.length > 100 ? str.substr(0, 100 - 1) + "..." : str;
+};
+ 
 
     return (
         <div>
@@ -37,7 +42,7 @@ export default function Repos({ repos }) {
 
                         <div className="w-full sm:w-4/6 text-left">
                             <h2 className="text-3xl break-words  mb-2">{repos[i].name}</h2>
-                            <p>{repos[i].description} </p>
+                            <p>{shortenDes(repos[i].description)} </p>
                             <div className="mt-3 flex flex-row flex-wrap items-center">
                                 <span className="border p-3 rounded-lg mr-3">Stars: {repos[i].stargazers_count}</span>
                                 <span className="border p-3 rounded-lg mr-5">Issues: {repos[i].open_issues}</span>
